@@ -3,56 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revive VPN | Подключение</title>
+    <title>Revive VPN | Установка</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #121212; color: #fff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .card { background: #1e1e1e; padding: 30px; border-radius: 20px; text-align: center; max-width: 350px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333;}
-        h1 { font-size: 20px; margin-bottom: 10px; color: #fff;}
-        p { color: #a0a0a0; font-size: 14px; line-height: 1.5; margin-bottom: 25px; }
-        .btn { display: inline-block; background: #ff8c00; color: white; padding: 14px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; width: 80%; box-sizing: border-box;}
-        .loader { display: inline-block; width: 30px; height: 30px; border: 3px solid rgba(255,140,0,.3); border-radius: 50%; border-top-color: #ff8c00; animation: spin 1s ease-in-out infinite; margin-bottom: 15px;}
-        @keyframes spin { to { transform: rotate(360deg); } }
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #ff8c00;
+            --border: #333;
+        }
+        body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 450px; width: 100%; }
+        h1 { text-align: center; font-size: 24px; margin-bottom: 25px; color: var(--text-main); }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .step-title { font-size: 18px; font-weight: 600; margin-top: 0; margin-bottom: 8px; display: flex; align-items: center; }
+        .step-desc { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+        .btn { display: block; width: 100%; background-color: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 14px 0; border-radius: 12px; text-align: center; text-decoration: none; font-size: 16px; font-weight: bold; transition: all 0.2s ease; box-sizing: border-box; }
+        .btn:hover, .btn:active { background-color: var(--accent); color: #fff; }
     </style>
 </head>
 <body>
+
+<div class="container">
+    <h1>🟢 Панель Revive VPN</h1>
+
+    <!-- ШАГ 1: Скачивание приложения -->
     <div class="card">
-        <div class="loader" id="loader"></div>
-        <h1 id="title">Запуск Happ...</h1>
-        <p id="desc">Подождите, формируем безопасный запрос к приложению.</p>
-        <a href="#" id="btn" class="btn" style="display:none;">Установить вручную</a>
+        <h2 class="step-title">⬇️ 1. Установка приложения</h2>
+        <p class="step-desc" id="os-desc">Определяем ваше устройство...</p>
+        <a href="#" id="download-btn" class="btn">Скачать приложение</a>
     </div>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const action = params.get('action');
+    <!-- ШАГ 2: Добавление подписки -->
+    <div class="card">
+        <h2 class="step-title">☁️ 2. Добавление подписки</h2>
+        <p class="step-desc">Нажмите кнопку ниже, приложение откроется и серверы добавятся автоматически.</p>
+        <!-- Единая ссылка для бесплатной подписки -->
+        <a href="happ://import?url=http://87.120.108.204/sub/free" class="btn">+ Добавить подписку</a>
+    </div>
 
-        // Твоя ссылка на GeoFile
-        const geoData = "happ://routing/onadd/eyJOYW1lIjoiUm9zY29tVlBOIiwiR2xvYmFsUHJveHkiOiJ0cnVlIiwiVXNlQ2h1bmtGaWxlcyI6InRydWUiLCJSZW1vdGVEbnMiOiI4LjguOC44IiwiRG9tZXN0aWNEbnMiOiI3Ny44OC44LjgiLCJSZW1vdGVETlNUeXBlIjoiRG9IIiwiUmVtb3RlRE5TRG9tYWluIjoiaHR0cHM6Ly84LjguOC44L2Rucy1xdWVyeSIsIlJlbW90ZUROU0lQIjoiOC44LjguOCIsIkRvbWVzdGljRE5TVHlwZSI6IkRvSCIsIkRvbWVzdGljRE5TRG9tYWluIjoiaHR0cHM6Ly83Ny44OC44LjgvZG5zLXF1ZXJ5IiwiRG9tZXN0aWNETlNJUCI6Ijc3Ljg4LjguOCIsIkdlb2lwdXJsIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL2h5ZHJhcG9uaXF1ZS9yb3Njb212cG4tZ2VvaXBAMjAyNjA0MTcwNTM1L3JlbGVhc2UvZ2VvaXAuZGF0IiwiR2Vvc2l0ZXVybCI6Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC9oeWRyYXBvbmlxdWUvcm9zY29tdnBuLWdlb3NpdGVAMjAyNjA0MTUyMjM1L3JlbGVhc2UvZ2VvaXAueHl6IiwiTGFzdFVwZGF0ZWQiOiIxNzc2NDA0MTc1IiwiRG5zSG9zdHMiOnsibGtmMm5hbG9nLnJ1IjoiMjEzLjI0LjY0LjE3NSIsImxrbnBkLm5hbG9nLnJ1IjoiMjEzLjI0LjY0LjE4MSJ9LCJSb3V0ZU9yZGVyIjoiYmxvY2stcHJveHktZGlyZWN0IiwiRGlyZWN0U2l0ZXMiOlsiZ2Vvc2l0ZTpwcml2YXRlIiwiZ2Vvc2l0ZTpjYXRlZ29yeS1ydSIsImdlb3NpdGU6d2hpdGVsaXN0IiwiZ2Vvc2l0ZTptaWNyb3NvZnQiLCJnZW9zaXRlOmFwcGxlIiwiZ2Vvc2l0ZTplcGljZ2FtZXMiLCJnZW9zaXRlOnJpb3QiLCJnZW9zaXRlOmVzY2FwZWZyb210YXJrb3YiLCJnZW9zaXRlOnN0ZWFtIiwiZ2Vvc2l0ZTp0d2l0Y2giLCJnZW9zaXRlOnBpbnRlcmVzdCIsImdlb3NpdGU6ZmFjZWl0Il0sIkRpcmVjdElwIjpbImdlb2lwOnByaXZhdGUiLCJnZW9pcDpkaXJlY3QiXSwiUHJveHlTaXRlcyI6WyJnZW9zaXRlOmdvb2dsZS1wbGF5IiwiZ2Vvc2l0ZTpnaXRodWIiLCJnZW9zaXRlOnR3aXRjaC1hZHMiLCJnZW9zaXRlOnlvdXR1YmUiLCJnZW9zaXRlOnRlbGVncmFtIl0sIlByb3h5SXAiOltdLCJCbG9ja1NpdGVzIjpbImdlb3NpdGU6d2luLXNweSIsImdlb3NpdGU6dG9ycmVudCIsImdlb3NpdGU6Y2F0ZWdvcnktYWRzIl0sIkJsb2NrSXAiOltdLCJEb21haW5TdHJhdGVneSI6IklQSWZOb25NYXRjaCIsIkZha2VETlMiOiJmYWxzZSJ9Cg==";
-        let targetLink = "";
+    <!-- ШАГ 3: Гео-маршруты (RoscomVPN) -->
+    <div class="card">
+        <h2 class="step-title">🌍 3. Настройка маршрутов</h2>
+        <p class="step-desc">Обязательный шаг для обхода блокировок. Нажмите кнопку, чтобы добавить правила маршрутизации.</p>
+        <a href="#" id="geo-btn" class="btn">Установить Geo-правила</a>
+    </div>
+</div>
 
-        if (action === "geo") {
-            document.getElementById('title').innerText = "Настройка маршрутов";
-            document.getElementById('desc').innerText = "Открываем Happ для импорта правил RoscomVPN.";
-            targetLink = geoData;
-        } else if (action === "sub") {
-            document.getElementById('title').innerText = "Добавление подписки";
-            document.getElementById('desc').innerText = "Открываем Happ для импорта серверов Revive VPN.";
-            // Единая ссылка для всех бесплатных пользователей
-            targetLink = "happ://import?url=http://87.120.108.204/sub/free"; 
-        }
+<script>
+    // 1. ВШИВАЕМ ССЫЛКУ НА GEOFILE
+    const geoData = "happ://routing/onadd/eyJOYW1lIjoiUm9zY29tVlBOIiwiR2xvYmFsUHJveHkiOiJ0cnVlIiwiVXNlQ2h1bmtGaWxlcyI6InRydWUiLCJSZW1vdGVEbnMiOiI4LjguOC44IiwiRG9tZXN0aWNEbnMiOiI3Ny44OC44LjgiLCJSZW1vdGVETlNUeXBlIjoiRG9IIiwiUmVtb3RlRE5TRG9tYWluIjoiaHR0cHM6Ly84LjguOC44L2Rucy1xdWVyeSIsIlJlbW90ZUROU0lQIjoiOC44LjguOCIsIkRvbWVzdGljRE5TVHlwZSI6IkRvSCIsIkRvbWVzdGljRE5TRG9tYWluIjoiaHR0cHM6Ly83Ny44OC44LjgvZG5zLXF1ZXJ5IiwiRG9tZXN0aWNETlNJUCI6Ijc3Ljg4LjguOCIsIkdlb2lwdXJsIjoiaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL2h5ZHJhcG9uaXF1ZS9yb3Njb212cG4tZ2VvaXBAMjAyNjA0MTcwNTM1L3JlbGVhc2UvZ2VvaXAuZGF0IiwiR2Vvc2l0ZXVybCI6Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9naC9oeWRyYXBvbmlxdWUvcm9zY29tdnBuLWdlb3NpdGVAMjAyNjA0MTUyMjM1L3JlbGVhc2UvZ2VvaXAueHl6IiwiTGFzdFVwZGF0ZWQiOiIxNzc2NDA0MTc1IiwiRG5zSG9zdHMiOnsibGtmMm5hbG9nLnJ1IjoiMjEzLjI0LjY0LjE3NSIsImxrbnBkLm5hbG9nLnJ1IjoiMjEzLjI0LjY0LjE4MSJ9LCJSb3V0ZU9yZGVyIjoiYmxvY2stcHJveHktZGlyZWN0IiwiRGlyZWN0U2l0ZXMiOlsiZ2Vvc2l0ZTpwcml2YXRlIiwiZ2Vvc2l0ZTpjYXRlZ29yeS1ydSIsImdlb3NpdGU6d2hpdGVsaXN0IiwiZ2Vvc2l0ZTptaWNyb3NvZnQiLCJnZW9zaXRlOmFwcGxlIiwiZ2Vvc2l0ZTplcGljZ2FtZXMiLCJnZW9zaXRlOnJpb3QiLCJnZW9zaXRlOmVzY2FwZWZyb210YXJrb3YiLCJnZW9zaXRlOnN0ZWFtIiwiZ2Vvc2l0ZTp0d2l0Y2giLCJnZW9zaXRlOnBpbnRlcmVzdCIsImdlb3NpdGU6ZmFjZWl0Il0sIkRpcmVjdElwIjpbImdlb2lwOnByaXZhdGUiLCJnZW9pcDpkaXJlY3QiXSwiUHJveHlTaXRlcyI6WyJnZW9zaXRlOmdvb2dsZS1wbGF5IiwiZ2Vvc2l0ZTpnaXRodWIiLCJnZW9zaXRlOnR3aXRjaC1hZHMiLCJnZW9zaXRlOnlvdXR1YmUiLCJnZW9zaXRlOnRlbGVncmFtIl0sIlByb3h5SXAiOltdLCJCbG9ja1NpdGVzIjpbImdlb3NpdGU6d2luLXNweSIsImdlb3NpdGU6dG9ycmVudCIsImdlb3NpdGU6Y2F0ZWdvcnktYWRzIl0sIkJsb2NrSXAiOltdLCJEb21haW5TdHJhdGVneSI6IklQSWZOb25NYXRjaCIsIkZha2VETlMiOiJmYWxzZSJ9Cg==";
+    document.getElementById('geo-btn').href = geoData;
 
-        if (targetLink) {
-            const btn = document.getElementById('btn');
-            btn.href = targetLink;
-            btn.style.display = "inline-block";
-            document.getElementById('loader').style.display = "none";
-            // Авто-клик
-            setTimeout(() => { window.location.href = targetLink; }, 1000);
-        } else {
-            document.getElementById('title').innerText = "Ошибка";
-            document.getElementById('desc').innerText = "Пожалуйста, используйте кнопки в Telegram-боте.";
-            document.getElementById('loader').style.display = "none";
-        }
-    </script>
+    // 2. УМНОЕ ОПРЕДЕЛЕНИЕ ОС
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const downloadBtn = document.getElementById('download-btn');
+    const osDesc = document.getElementById('os-desc');
+
+    if (/android/i.test(userAgent)) {
+        osDesc.innerText = "Мы определили, что у вас Android. Скачайте приложение Happ из Google Play.";
+        downloadBtn.innerText = "Скачать для Android";
+        downloadBtn.href = "https://play.google.com/store/apps/details?id=com.v2ray.ang"; // Поменяй на ссылку Happ, если есть
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        osDesc.innerText = "Мы определили, что у вас iOS. Скачайте V2ray Tun или Happ из App Store.";
+        downloadBtn.innerText = "Скачать для iOS";
+        downloadBtn.href = "https://apps.apple.com/us/app/v2ray-tun/id1466582829";
+    } else {
+        osDesc.innerText = "Мы определили, что у вас ПК (Windows/Mac). Скачайте Nekobox или Happ с GitHub.";
+        downloadBtn.innerText = "Скачать для ПК";
+        downloadBtn.href = "https://github.com/Matsuridayo/nekoray/releases";
+    }
+</script>
+
 </body>
 </html>
